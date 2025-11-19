@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Олимпиадная подготовка</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--light-color);
+        }
+        
+        main {
+            margin-top: 80px; /* Отступ для фиксированной шапки */
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233498db"/><text x="50" y="50" font-family="Arial" font-size="10" fill="white" text-anchor="middle" dominant-baseline="middle">Олимпиады</text></svg>');
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .subject-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .subject-icon {
+            background-color: var(--primary-color);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .subject-content {
+            padding: 1.2rem;
+        }
+        
+        .subject-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .universities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .university-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .university-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .university-logo {
+            background-color: var(--light-color);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .university-content {
+            padding: 1.5rem;
+        }
+        
+        .university-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .university-content .location {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .university-content .benefits {
+            list-style-type: none;
+            margin-top: 0.5rem;
+        }
+        
+        .university-content .benefits li {
+            margin-bottom: 0.3rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        
+        .university-content .benefits li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .resources-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-item h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .resource-item ul {
+            list-style-type: none;
+        }
+        
+        .resource-item ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .resource-item ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .resource-item ul li a {
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .resource-item ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .calendar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .calendar h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .calendar-event {
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            background-color: var(--light-color);
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-event h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .calendar-event .date {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .forum-preview {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .forum-preview h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .forum-topic {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .forum-topic:last-child {
+            border-bottom: none;
+        }
+        
+        .forum-topic h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .forum-topic .meta {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--light-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 0;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 0.8rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.3rem;
+            }
+            
+            main {
+                margin-top: 100px; /* Больше места для мобильной шапки */
+            }
+            
+            .hero {
+                height: 250px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .subjects-grid, .resources-list, .universities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Олимпиадная подготовка</div>
+                <nav>
+                    <ul>
+                        <li><a href="#subjects">Предметы</a></li>
+                        <li><a href="#resources">Ресурсы</a></li>
+                        <li><a href="#calendar">Календарь</a></li>
+                        <li><a href="#universities">Вузы</a></li>
+                        <li><a href="#forum">Форум</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Подготовка к олимпиадам</h1>
+                <p>Лучшие ресурсы и материалы для успешного выступления на олимпиадах</p>
+                <a href="#subjects" class="btn">Начать подготовку</a>
+            </div>
+        </section>
+
+        <section id="subjects" class="section">
+            <div class="container">
+                <h2 class="section-title">Предметы для подготовки</h2>
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <div class="subject-icon">М</div>
+                        <div class="subject-content">
+                            <h3>Математика</h3>
+                            <p>Задачи различной сложности, теория чисел, комбинаторика, геометрия</p>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">Ф</div>
+                        <div class="subject-content">
+                            <h3>Физика</h3>
+                            <p>Механика, оптика, термодинамика, электродинамика, квантовая физика</p>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">И</div>
+                        <div class="subject-content">
+                            <h3>Информатика</h3>
+                            <p>Алгоритмы, программирование, структуры данных, олимпиадные задачи</p>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">Х</div>
+                        <div class="subject-content">
+                            <h3>Химия</h3>
+                            <p>Органическая и неорганическая химия, химические реакции, задачи</p>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">Б</div>
+                        <div class="subject-content">
+                            <h3>Биология</h3>
+                            <p>Ботаника, зоология, анатомия, генетика, молекулярная биология</p>
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <div class="subject-icon">Л</div>
+                        <div class="subject-content">
+                            <h3>Лингвистика</h3>
+                            <p>Лингвистические задачи, анализ текстов, языковые структуры</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="section" style="background-color: #f0f4f8;">
+            <div class="container">
+                <h2 class="section-title">Полезные ресурсы</h2>
+                <div class="resources-list">
+                    <div class="resource-item">
+                        <h3>Учебные материалы</h3>
+                        <ul>
+                            <li><a href="#">Сборники олимпиадных задач</a></li>
+                            <li><a href="#">Теоретические материалы</a></li>
+                            <li><a href="#">Видеоуроки и лекции</a></li>
+                            <li><a href="#">Методические пособия</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-item">
+                        <h3>Тренировочные платформы</h3>
+                        <ul>
+                            <li><a href="#">Онлайн-тренажеры</a></li>
+                            <li><a href="#">Архивы прошлых олимпиад</a></li>
+                            <li><a href="#">Интерактивные задачи</a></li>
+                            <li><a href="#">Тесты для самопроверки</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-item">
+                        <h3>Сообщество</h3>
+                        <ul>
+                            <li><a href="#">Форум для обсуждения</a></li>
+                            <li><a href="#">Чат с преподавателями</a></li>
+                            <li><a href="#">Группы по интересам</a></li>
+                            <li><a href="#">Мероприятия и встречи</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="section">
+            <div class="container">
+                <h2 class="section-title">Календарь олимпиад</h2>
+                <div class="calendar">
+                    <h3>Ближайшие события</h3>
+                    <div class="calendar-event">
+                        <h4>Всероссийская олимпиада школьников по математике</h4>
+                        <p class="date">15 октября 2026</p>
+                        <p>Муниципальный этап</p>
+                    </div>
+                    <div class="calendar-event">
+                        <h4>Олимпиада "Ломоносов" по физике</h4>
+                        <p class="date">22 октября 2026</p>
+                        <p>Отборочный этап</p>
+                    </div>
+                    <div class="calendar-event">
+                        <h4>Олимпиада "Высшая проба" по информатике</h4>
+                        <p class="date">5 ноября 2026</p>
+                        <p>Регистрация до 1 ноября</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="universities" class="section" style="background-color: #f0f4f8;">
+            <div class="container">
+                <h2 class="section-title">Вузы для олимпиадников</h2>
+                <div class="universities-grid">
+                    <div class="university-card">
+                        <div class="university-logo">МГУ</div>
+                        <div class="university-content">
+                            <h3>Московский государственный университет</h3>
+                            <p class="location">Москва</p>
+                            <p>Один из ведущих вузов России, предоставляет льготы победителям олимпиад</p>
+                            <ul class="benefits">
+                                <li>Зачисление без вступительных</li>
+                                <li>100 баллов по профильному ЕГЭ</li>
+                                <li>Стипендии олимпиадникам</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="university-card">
+                        <div class="university-logo">МФТИ</div>
+                        <div class="university-content">
+                            <h3>Московский физико-технический институт</h3>
+                            <p class="location">Москва, Долгопрудный</p>
+                            <p>Ведущий технический вуз, известный сильной подготовкой по физике и математике</p>
+                            <ul class="benefits">
+                                <li>Без вступительных испытаний</li>
+                                <li>Дополнительные баллы</li>
+                                <li>Программа поддержки</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="university-card">
+                        <div class="university-logo">ВШЭ</div>
+                        <div class="university-content">
+                            <h3>Высшая школа экономики</h3>
+                            <p class="location">Москва</p>
+                            <p>Крупный университет с сильными программами по экономике и гуманитарным наукам</p>
+                            <ul class="benefits">
+                                <li>Зачисление без экзаменов</li>
+                                <li>Повышенные стипендии</li>
+                                <li>Международные стажировки</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="university-card">
+                        <div class="university-logo">СПбГУ</div>
+                        <div class="university-content">
+                            <h3>Санкт-Петербургский государственный университет</h3>
+                            <p class="location">Санкт-Петербург</p>
+                            <p>Старейший вуз России с богатыми традициями и сильными научными школами</p>
+                            <ul class="benefits">
+                                <li>Льготное зачисление</li>
+                                <li>Научные гранты</li>
+                                <li>Общежитие для иногородних</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="university-card">
+                        <div class="university-logo">МГТУ</div>
+                        <div class="university-content">
+                            <h3>МГТУ им. Баумана</h3>
+                            <p class="location">Москва</p>
+                            <p>Ведущий технический университет России, известный инженерными специальностями</p>
+                            <ul class="benefits">
+                                <li>Зачисление без экзаменов</li>
+                                <li>Целевые программы</li>
+                                <li>Практика в ведущих компаниях</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="university-card">
+                        <div class="university-logo">ИТМО</div>
+                        <div class="university-content">
+                            <h3>Университет ИТМО</h3>
+                            <p class="location">Санкт-Петербург</p>
+                            <p>Ведущий вуз в области информационных технологий и фотоники</p>
+                            <ul class="benefits">
+                                <li>Без вступительных испытаний</li>
+                                <li>Участие в проектах</li>
+                                <li>Сотрудничество с IT-компаниями</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="forum" class="section">
+            <div class="container">
+                <h2 class="section-title">Форум</h2>
+                <div class="forum-preview">
+                    <h3>Последние обсуждения</h3>
+                    <div class="forum-topic">
+                        <h4>Как подготовиться к олимпиаде по математике за месяц?</h4>
+                        <p class="meta">Автор: Алексей, 15 сентября 2026, 12 ответов</p>
+                    </div>
+                    <div class="forum-topic">
+                        <h4>Полезные ресурсы для подготовки по физике</h4>
+                        <p class="meta">Автор: Мария, 12 сентября 2026, 8 ответов</p>
+                    </div>
+                    <div class="forum-topic">
+                        <h4>Советы по решению задач по информатике</h4>
+                        <p class="meta">Автор: Дмитрий, 10 сентября 2026, 24 ответа</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: info@olympiad.ru</p>
+                    <p>Телефон: +7 (495) 123-45-67</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="#subjects">Предметы</a></li>
+                        <li><a href="#resources">Ресурсы</a></li>
+                        <li><a href="#calendar">Календарь</a></li>
+                        <li><a href="#universities">Вузы</a></li>
+                        <li><a href="#forum">Форум</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <ul>
+                        <li><a href="#">ВКонтакте</a></li>
+                        <li><a href="#">Telegram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Олимпиадная подготовка. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к якорям с учетом высоты шапки
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Применяем анимацию к карточкам предметов
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+        
+        // Применяем анимацию к элементам ресурсов
+        document.querySelectorAll('.resource-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(item);
+        });
+        
+        // Применяем анимацию к карточкам вузов
+        document.querySelectorAll('.university-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
